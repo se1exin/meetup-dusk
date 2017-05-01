@@ -1,0 +1,107 @@
+@import "./_mixins";
+
+// BASE STYLING
+* {
+  box-sizing: border-box;
+  -ms-overflow-style: none;
+  overflow: visible;
+  &::-webkit-scrollbar { width: 0 !important }
+
+}
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+  -ms-overflow-style: none;
+  font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
+  font-family: @base-font-family;
+  .font-light();
+  font-size: @base-font-size; // BASE FONT SIZE
+  color: @theme-color-text-grey;
+  line-height: 1.3em;
+  padding: 0;
+  margin: 0;
+
+  @media screen and (max-width: @breakpoint-md) {
+    font-size: 16px;
+  }
+}
+// Remove the autocomplete syling in WebKit
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  background-color: transparent !important;
+  border: none;
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+}
+
+p {
+  margin: 0;
+}
+h1 {
+  display: none !important;
+}
+h1, h2, h3, h4, h5, h6 {
+  color: @theme-color-text-black;
+  .font-bold();
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: @theme-color-text-grey;
+  transition: color 0.3s;
+  &:hover,
+  &:focus,
+  &:active {
+    color: lighten(@theme-color-text-grey, 20%);
+  }
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.txt-center {
+  text-align: center;
+}
+
+.pad-left {
+  padding-left: @base-padding;
+  @media screen and (max-width: @breakpoint-sm) {
+    padding-left: @base-padding / 2;
+  }
+}
+.pad-right {
+  padding-right: @base-padding;
+  @media screen and (max-width: @breakpoint-sm) {
+    padding-right: @base-padding / 2;
+  }
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  &.no-flex {
+    display: block;
+  }
+}
+
+#main {
+  padding: @base-padding / 2;
+}
