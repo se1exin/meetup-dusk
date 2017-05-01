@@ -12,8 +12,8 @@ class LoginController extends Controller
     {
         if (Auth::check()){
             $user = Auth::user();
-            // User is logged in, show dashboard
-            return view('simple/dashboard', compact('user'));
+            // User is logged in, redirect to dashboard
+            return redirect('/dashboard');
         } else {
             // User is not logged in, show login form
             return view('simple/login');
@@ -32,6 +32,18 @@ class LoginController extends Controller
         }
 
         return redirect('/');
+    }
+
+    public function dashboard()
+    {
+        if (Auth::check()){
+            $user = Auth::user();
+            // User is logged in, show dashboard
+            return view('simple/dashboard', compact('user'));
+        } else {
+            // User is not logged in, redirect to login
+            return redirect('/');
+        }
     }
 
     public function logout()

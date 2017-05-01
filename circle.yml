@@ -5,6 +5,10 @@ machine:
   php:
     version: 7.0.7
 
+  node:
+    version: 6.10.2
+
+
 dependencies:
   pre:
     # Create our test database

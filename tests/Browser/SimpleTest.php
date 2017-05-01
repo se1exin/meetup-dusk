@@ -37,7 +37,7 @@ class SimpleTest extends DuskTestCase
                 ->type('password', 'incorrectpassword')
 
                 // Submit the form
-                ->click('button[type=submit]')
+                ->click('input[type=submit]')
 
                 // Wait for login and redirect to '/dashboard'
                 ->pause(1000)

@@ -23,6 +23,6 @@
 
         {!! csrf_field() !!}
     </form>
-    <p class="login-status">{!! session('login_status')  !!}</p>
+    <p class="login-status space-top">{!! session('login_status')  !!}</p>
 
 @endsection
