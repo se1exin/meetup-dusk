@@ -1,6 +1,8 @@
  # Laravel Dusk Demonstration
  ## PHP Laravel Framework Sydney Meetup 2/5/17
 
+[![CircleCI branch](https://img.shields.io/circleci/project/github/se1exin/meetup-dusk/master.svg)]()
+
  ### Note: The `master` branch contains tests that are **intentionally failing**. Switch to the `passing` branch to see the fixed tests.
 
  ## Install
