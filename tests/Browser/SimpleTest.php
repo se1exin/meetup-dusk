@@ -81,8 +81,6 @@ class SimpleTest extends DuskTestCase
     public function testAuthenticatedCanLogout()
     {
         $this->browse(function (Browser $browser) {
-            // Note: As we are using a real browser, out logged-in session will
-            // Have persisted
             $browser->visit('/dashboard')
 
                 // Click the logout link
