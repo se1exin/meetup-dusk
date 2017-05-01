@@ -1,0 +1,43 @@
+machine:
+  timezone:
+    Australia/Sydney
+
+  php:
+    version: 7.0.7
+
+dependencies:
+  pre:
+    # Create our test database
+    - mysql -u ubuntu -e "create database testdb"
+
+    # Copy the custom circle .env first so composer install doesnt copy the wrong one
+    - cp .env.circleci .env
+
+  override:
+    - composer install --no-interaction
+    - npm install
+
+  post:
+    - npm run prod
+    - mkdir -p storage/framework/sessions storage/framework/views storage/framework/cache
+    - php artisan key:generate
+    - php artisan storage:link
+    - php artisan migrate
+    - php artisan db:seed --class=UsersTableSeeder
+
+test:
+  override:
+    - mkdir -p $CIRCLE_TEST_REPORTS/phpunit
+
+    # Manually start chromedriver - the Dusk one doesnt work
+    - chromedriver:
+        background: true
+    # Start the development server for the browser tests to work
+    - php artisan serve:
+        background: true
+
+    # Run the tests
+    - phpunit --log-junit $CIRCLE_TEST_REPORTS/phpunit/junit.xml tests
+
+    # Copy any screenshots to the circle artifacts folder
+    - cp -R tests/Browser/screenshots/ $CIRCLE_ARTIFACTS/

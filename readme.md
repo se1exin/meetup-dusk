@@ -18,7 +18,7 @@
 
 ## Tests
 
-To Dusk working in Homestead run `bash homestead-dusk-install.sh` to install everything
+To get Dusk working in Homestead run `bash homestead-dusk-install.sh` to install everything
 
 Keep in mind that Dusk uses the `.env` variable `APP_URL` to find your website. Make sure you update it to match the base URL to your development website.
 
