@@ -55,7 +55,7 @@ class SimpleTest extends DuskTestCase
 
                 // Fill out the login form
                 ->type('email', 'test@test.com')
-                ->type('password', 'qwerty')
+                ->type('password', 'incorrectpassword')
 
                 // Submit the form
                 ->click('input[type=submit]')
