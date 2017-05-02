@@ -1,0 +1,604 @@
+@import "./_mixins";
+
+#register-nav {
+  background: @theme-color-shamrock;
+  background: linear-gradient(to right, @theme-color-shamrock 0%, @theme-color-de-rock 100%);
+
+  ul {
+    li {
+      display: inline-block;
+      .font-bold();
+      position: relative;
+      padding: 20px 0;
+
+      &:after {
+        content: ' ';
+        position: absolute;
+        height: 7px;
+        width: 110%;
+        left: -5%;
+        bottom: -7px;
+        background-color: transparent;
+      }
+      &:first-child {
+        margin-right: @base-padding;
+      }
+      &.active {
+        color: @theme-color-white;
+
+        &:after {
+          background-color: @theme-color-text-black;
+        }
+      }
+
+      @media screen and (max-width: @breakpoint-xs) {
+        display: none;
+        &.active {
+          margin-right: 0;
+          display: block;
+          &:after {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+.auth-form {
+  padding-top: @base-padding;
+  .container {
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+    align-items: flex-start;
+    .title {
+      color: @theme-color-text-grey;
+      padding: 15px 20px;
+      border-bottom: 1px solid @theme-color-border-grey;
+      text-transform: uppercase;
+      font-size: 1.3rem;
+      width: 100%;
+      margin-bottom: 12px;
+    }
+
+    .error-message {
+      color: @theme-color-orange;
+      text-align: center;
+      font-size: 1.3rem;
+      line-height: 1.8rem;
+      .font-medium();
+      &.show {
+        padding: 20px 0;
+      }
+    }
+
+    // Input Styling
+    .input-wrap {
+      width: 100%;
+      padding: 12px 0;
+      position: relative;
+      &.left,
+      &.right{
+        width: 50%;
+      }
+      &.left {
+        padding-right: 14px;
+      }
+      &.right {
+        padding-left: 14px;
+      }
+      @media screen and (max-width: @breakpoint-xs) {
+        &.left,
+        &.right{
+          width: 100%;
+        }
+        &.left {
+          padding-right: 0;
+        }
+        &.right {
+          padding-left: 0;
+        }
+      }
+      label {
+        display: block;
+        padding: 5px 20px;
+        font-size: 0.7rem;
+        .font-bold();
+        text-transform: uppercase;
+      }
+
+      .helper {
+        display: block;
+        color: @theme-color-orange;
+        font-size: 0.8rem;
+        margin-top: 5px;
+        padding-left: 20px;
+        padding-right: 20px;
+        height: 0;
+        overflow: hidden;
+        transition: height 0.3s;
+      }
+
+      .input-helper {
+        position: absolute;
+        top: 17px;
+        right: 0;
+        font-size: 0.6rem;
+        line-height: 1rem;
+        .font-medium();
+      }
+
+      &.error {
+        label {
+          color: @theme-color-orange;
+        }
+        input,
+        textarea {
+          border-bottom: 1px solid @theme-color-orange;
+        }
+        .helper {
+          height: 1rem;
+          animation: 0.3s linear delayHelperShow;
+          animation-fill-mode: forwards;
+        }
+      }
+
+      .form-text {
+        font-family: @base-font-family;
+        .font-medium();
+        font-size: 1rem;
+        margin: 0;
+        padding: 5px 20px;
+        background-color: @theme-color-input-bg;
+        width: 100%;
+        border: none;
+        outline: none;
+        display: block;
+        position: relative;
+        z-index: 1;
+        height: 55px;
+        transition: border 0.3s;
+        color: @theme-color-text-black;
+      }
+    }
+  }
+
+  .form-footer {
+    text-align: center;
+    margin-top: 24px;
+    padding-top: 48px;
+    padding-bottom: 48px;
+    border-top: 1px solid @theme-color-border-grey;
+    p {
+      .font-regular();
+      font-size: 0.8rem;
+    }
+  }
+
+  .form-submit {
+    border: none;
+    outline: none;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    transition: color 0.3s, background-color 0.3s;
+
+    font-size: 1.1rem;
+    line-height: 1.1rem;
+    min-width: 200px;
+    text-transform: uppercase;
+    .font-bold();
+    margin-bottom: 20px;
+    &:hover {
+      color: darken(@theme-color-white, 10%);
+    }
+    &:focus {
+      outline: lighten(@theme-color-blue, 10%);
+    }
+
+    &.sending {
+      &:hover {
+        background-color: @theme-color-blue;
+      }
+    }
+
+    .loading {
+      position: absolute;
+      top: 0;
+      left: -80px;
+      height: 100%;
+      width: 80px;
+      background: @theme-color-blue;
+      background: linear-gradient(to right, @theme-color-blue, lighten(@theme-color-blue, 5%), @theme-color-blue);
+      z-index: 0;
+
+      &.show {
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
+        animation-iteration-count: infinite;
+        animation-name: plchrShimmer;
+        animation-timing-function: linear;
+      }
+    }
+
+    .text {
+      position: relative;
+      z-index: 1;
+    }
+  }
+}
+
+// Alternate theming (payment pages)
+body.bg-input-color {
+  .auth-form {
+    .input-wrap {
+      .form-text {
+        background-color: @theme-color-white;
+      }
+    }
+  }
+}
+
+@keyframes delayHelperShow {
+  0% { overflow: hidden }
+  99% { overflow: hidden }
+  100% { overflow: visible }
+}
+
+#register-form {
+  .form-footer {
+    a {
+      font-size: 1rem;
+      text-transform: uppercase;
+      .font-bold();
+    }
+  }
+  .title {
+    br {
+      display: none;
+
+      @media screen and (max-width: @breakpoint-xs) {
+        display: initial;
+      }
+    }
+  }
+}
+
+
+#payment-form {
+  max-width: 600px;
+  margin: auto;
+  .price {
+    float: right;
+  }
+
+  .card-icons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .card-icon {
+    width: 84px;
+    border: 1px solid @theme-color-border-grey;
+    border-radius: 6px;
+    background-color: @theme-color-white;
+    margin-right: 22px;
+
+    svg {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    &.visa {
+      svg {
+        padding: (15 / 84 * 100%) (8 / 84 * 100%) (16 / 84 * 100%) (5 / 84 * 100%);
+      }
+    }
+    &.mastercard {
+      svg {
+        padding: (3 / 84 * 100%) (12 / 84 * 100%);
+      }
+    }
+  }
+
+  .input-wrap {
+    &.card-number {
+      .card-icon {
+        position: absolute;
+        top: 55px;
+        right: 10px;
+        width: 55px;
+        z-index: 2;
+        margin-right: 0;
+
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      &.visa {
+        .visa {
+          opacity: 1;
+        }
+      }
+      &.mastercard {
+        .mastercard {
+          opacity: 1;
+        }
+      }
+      &.amex {
+        .amex {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  .form-footer {
+    padding-top: 24px;
+    a {
+      font-size: 1rem;
+      text-transform: uppercase;
+      .font-bold();
+    }
+  }
+
+  .agreement {
+    cursor: pointer;
+    margin-bottom: 24px;
+    text-align: left;
+    svg {
+      display: block;
+      width: 30px;
+      height: auto;
+      padding: 10px 8px;
+      fill: @theme-color-border-grey;
+      transition: all 0.3s;
+      border: 1px solid @theme-color-border-grey;
+      border-radius: 20px;
+      float: left;
+    }
+
+    &:hover {
+      svg {
+        fill: darken(@theme-color-border-grey, 10%);
+        border: 1px solid darken(@theme-color-border-grey, 10%);
+      }
+    }
+
+    label {
+      font-size: 0.9rem;
+      text-align: left;
+      margin-left: 50px;
+      margin-top: 0;
+      display: block;
+      cursor: pointer;
+    }
+    #agreement {
+      display: none;
+    }
+    #agreement:checked + span>svg {
+      fill: @theme-color-blue;
+      border: 1px solid @theme-color-blue;
+    }
+  }
+
+  .form-submit {
+    border: 4px solid @theme-color-blue;
+    transition: all 0.3s;
+    svg {
+      fill: @theme-color-white;
+      transition: fill 0.3s;
+      display: inline-block;
+      vertical-align: middle;
+      width: 22px;
+      height: auto;
+      margin-right: 5px;
+      position: relative;
+      z-index: 2;
+    }
+    .text {
+      display: inline-block;
+      vertical-align: middle;
+
+      &.active {
+        display: none;
+      }
+    }
+    &:hover {
+      border: 4px solid lighten(@theme-color-blue, 5%);
+      svg {
+        fill: darken(@theme-color-white, 10%);
+      }
+    }
+    &:disabled {
+      border: 4px solid @theme-color-border-grey;
+      background-color: transparent;
+      color: #CCC;
+
+      svg {
+        fill: #CCC;
+      }
+    }
+
+    &.sending {
+      border: 4px solid @theme-color-blue;
+      background-color: @theme-color-blue;
+      color: @theme-color-white;
+      svg {
+        fill: @theme-color-white;
+      }
+
+      .text{
+        &.inactive {
+          display: none;
+        }
+        &.active {
+          display: inline-block;
+          vertical-align: middle;
+        }
+      }
+
+    }
+  }
+}
+
+#main {
+  position: relative;
+  padding: 0;
+}
+
+
+/* NOT YET RESPONSIVE BELOW THIS LINE */
+.symbol-container {
+  margin: @base-padding auto;
+  text-align: center;
+  width: 135px;
+  height: 135px;
+  background-color: @theme-color-blue;
+  border-radius: 50%;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  @media screen and (max-width: @breakpoint-sm) {
+    width: 70px;
+    height: 70px;
+    margin: @base-padding/2 auto;
+  }
+  svg {
+    display: block;
+    margin: 0 auto;
+    width: 44px;
+    height: auto;
+    @media screen and (max-width: @breakpoint-sm) {
+      width: 30px;
+    }
+  }
+}
+
+.text-container {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  .price {
+    font-size: @base-font-size*2;
+    font-family: @base-font-family;
+    color: @theme-color-text-grey;
+    margin-bottom: @base-padding/3;
+    @media screen and (max-width: @breakpoint-sm) {
+      font-size: @base-font-size*1.5;
+    }
+  }
+  .congratulations {
+    font-size: @base-font-size*1.5;
+    font-family: @base-font-family;
+    line-height: 1.3;
+    font-weight: bold;
+    color: @theme-color-text-grey;
+    margin-bottom: @base-padding;
+    @media screen and (max-width: @breakpoint-sm) {
+      font-size: @base-font-size;
+    }
+  }
+  .confirmation {
+    margin-bottom: @base-padding/3;
+    line-height: 1.3;
+    font-size: @base-font-size;
+    font-family: @base-font-family;
+    @media screen and (max-width: @breakpoint-sm) {
+      font-size: @base-font-size;
+      margin-bottom: @base-padding/3;
+    }
+    @media screen and (max-width: @breakpoint-xs) {
+      font-size: @base-font-size/1.2;
+    }
+  }
+
+  .reference {
+    margin-bottom: @base-padding;
+    line-height: 1.3;
+    font-size: @base-font-size;
+    font-family: @base-font-family;
+    @media screen and (max-width: @breakpoint-sm) {
+      font-size: @base-font-size;
+    }
+    @media screen and (max-width: @breakpoint-xs) {
+      font-size: @base-font-size/1.2;
+    }
+  }
+
+  .form-submit {
+    border: none;
+    outline: none;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    transition: color 0.3s, background-color 0.3s;
+    font-size: 1rem;
+    line-height: 1rem;
+    min-width: 200px;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: @base-padding/3;
+  }
+
+  .terms-container {
+    font-size: 1rem;
+    font-family: @base-font-family;
+    margin-top: @base-padding/3;
+    margin-bottom: @base-padding;
+    color: @theme-color-text-grey;
+    @media screen and (max-width: @breakpoint-xs) {
+      font-size: 0.8rem;
+    }
+    a {
+      font-weight: 700;
+      font-size: 1rem;
+      text-transform: uppercase;
+    }
+  }
+}
+
+.payment-banner {
+  background-image: url('/images/forms-bg@1200.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 60px 0 80px 0;
+
+  @media screen and (max-width: @breakpoint-md) {
+    padding: 60px 0 @base-padding 0;
+  }
+
+  @media screen and (max-width: @breakpoint-sm) {
+    background-image: url('/images/forms-bg@767.png');
+  }
+
+  @media screen and (max-width: @breakpoint-xs) {
+    background-image: url('/images/forms-bg@540.png');
+    padding: @base-padding 0 (@base-padding / 1.5) 0;
+    text-align: center;
+  }
+
+  .title {
+    font-size: 2.8rem;
+    line-height: 1.2em;
+    margin-bottom: 30px;
+    @media screen and (max-width: @breakpoint-md) {
+      font-size: 2.2rem;
+      line-height: 1.1em;
+    }
+    @media screen and (max-width: @breakpoint-xs) {
+      font-size: 2rem;
+    }
+  }
+
+  .subtitle {
+    line-height: 1.8rem;
+  }
+}

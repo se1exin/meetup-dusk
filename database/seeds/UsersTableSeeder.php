@@ -13,9 +13,15 @@ class UsersTableSeeder extends Seeder
     {
         // Insert a test App user
         DB::table('users')->insert([
-            'name' => 'Test User',
+            'first_name' => 'Test',
+            'last_name' => 'User',
+            'phone' => '123456789',
             'email' => 'test@test.com',
-            'password' => bcrypt('qwerty')
+            'password' => bcrypt('qwerty'),
+            'address_street' => '',
+            'address_city' => '',
+            'address_postcode' => '',
+            'address_state' => ''
         ]);
     }
 }

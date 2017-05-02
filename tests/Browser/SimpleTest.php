@@ -22,6 +22,27 @@ class SimpleTest extends DuskTestCase
     }
 
     /**
+     * Test that an incorrect email/password combination is denied
+     *
+     * @return void
+     */
+    public function testUnauthenticatedIncorrectEmailPassword()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/')
+                // Fill out the login form
+                ->type('email', 'test@test.com')
+                ->type('password', 'incorrectpassword')
+                // Submit the form
+                ->click('input[type=submit]')
+                // Wait for login
+                ->pause(1000)
+                // Did we get the error message due to incorrect password?
+                ->assertSee('Incorrect Username/Password!');
+        });
+    }
+
+    /**
      * Test that an unauthenticated user can login
      * Note: Should FAIL due to incorrect password
      *
@@ -34,7 +55,7 @@ class SimpleTest extends DuskTestCase
 
                 // Fill out the login form
                 ->type('email', 'test@test.com')
-                ->type('password', 'incorrectpassword')
+                ->type('password', 'qwerty')
 
                 // Submit the form
                 ->click('input[type=submit]')

@@ -19,6 +19,11 @@
  $ php artisan db:seed --class=UsersTableSeeder
  ```
 
+To run the advanced test you require a Stripe account (its free) in at least test mode. You will also need to create a 'Plan' in stripe (under subscriptions) with the ID 'meetup_dusk'.
+
+Add your Stripe test API keys in the `.env` variables `STRIPE_KEY` and `STRIPE_SECRET`
+
+
 ## Tests
 
 To get Dusk working in Homestead run `bash homestead-dusk-install.sh` to install everything
@@ -32,3 +37,4 @@ Run `php artisan dusk` to execute the tests
 
 * Laravel Dusk Documentation: https://laravel.com/docs/5.4/dusk
 * Dusk Assertions: https://laravel.com/docs/5.4/dusk#available-assertions
+* Laravel Cashier: https://laravel.com/docs/5.4/billing
