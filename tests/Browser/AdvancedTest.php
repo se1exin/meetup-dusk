@@ -64,7 +64,7 @@ class AdvancedTest extends DuskTestCase
                 ->value('#address-city', 'City')
 
                 ->pause($this->demoPause) // Pause for demonstration purposes
-                ->value('#address-postcode', '123') // <--- TEST SHOULD FAIL
+                ->value('#address-postcode', '12') // <--- TEST SHOULD FAIL
 
                 ->pause($this->demoPause) // Pause for demonstration purposes
                 ->value('#address-state', 'NSW')
