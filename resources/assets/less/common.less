@@ -89,6 +89,81 @@ ul {
   }
 }
 
+
+.bg-white {
+  background-color: @theme-color-white;
+}
+.bg-blue {
+  background-color: @theme-color-blue;
+}
+.bg-green {
+  background-color: @theme-color-green;
+}
+.bg-shark-a {
+  background-color: @theme-color-shark-a;
+}
+.bg-shark-b {
+  background-color: @theme-color-shark-b;
+}
+.bg-shark-c {
+  background-color: @theme-color-shark-c;
+}
+.bg-input-color {
+  background-color: @theme-color-input-bg;
+}
+
+
+.txt-white {
+  color: @theme-color-white;
+}
+.txt-blue {
+  color: @theme-color-blue;
+}
+.txt-green {
+  color: @theme-color-green;
+}
+.txt-shark-a {
+  color: @theme-color-shark-a;
+}
+.txt-shark-b {
+  color: @theme-color-shark-b;
+}
+.txt-shark-c {
+  color: @theme-color-shark-c;
+}
+.txt-black {
+  color: @theme-color-text-black;
+}
+.txt-grey {
+  color: @theme-color-text-grey;
+}
+.txt-contact {
+  color: @theme-color-text-contact;
+}
+
+.btn-circle {
+  display: inline-block;
+  padding: 20px 30px;
+  border-radius: 40px;
+  .font-regular();
+  font-size: 1.33rem;
+  transition: background-color 0.3s;
+
+  &:hover {
+    &.bg-blue {
+      background-color: lighten(@theme-color-blue, 5%);
+    }
+    &.bg-shark-b {
+      background-color: lighten(@theme-color-shark-b, 5%);
+    }
+    &.txt-white {
+      color: @theme-color-white;
+    }
+
+  }
+}
+
+
 .container {
   width: 100%;
   max-width: 1200px;
