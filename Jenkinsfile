@@ -11,9 +11,8 @@ node('master') {
         }
 
         stage('test') {
-            sh "export DISPLAY=:99.0"
-            // sh -e "/etc/init.d/xvfb start"
-            sh "./vendor/laravel/dusk/bin/chromedriver-linux &"
+            sh -e "Xvfb -ac :0 -screen 0 1280x100000x16 &"
+            sh "chromedriver &"
             sh "php artisan serve &"
             sh "./vendor/bin/phpunit tests"
         }
