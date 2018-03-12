@@ -14,7 +14,6 @@ node('master') {
         }
 
         stage('test') {
-            sh -e "Xvfb -ac :0 -screen 0 1280x100000x16 &"
             sh "chromedriver &"
             sh "php artisan serve &"
             sh "./vendor/bin/phpunit tests"
