@@ -10,14 +10,11 @@ node('master') {
             sh "php artisan key:generate"
         }
 
-        stage('prepare_test') {
+        stage('test') {
             sh export DISPLAY=:99.0
             sh -e /etc/init.d/xvfb start
             sh ./vendor/laravel/dusk/bin/chromedriver-linux &
             sh php artisan serve &
-        }
-
-        stage('test') {
             sh "./vendor/bin/phpunit tests"
         }
 
