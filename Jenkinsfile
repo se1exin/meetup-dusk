@@ -25,9 +25,9 @@ node('master') {
             sh "echo 'WE ARE DEPLOYING'"
         }
     } catch(error) {
+        sh "echo 'JENKINS FILE ERROR'"
         throw error
     } finally {
 
     }
-
 }
