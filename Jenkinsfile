@@ -8,6 +8,9 @@ node('master') {
             sh "cp .env.circleci .env"
             sh "composer install --no-interaction"
             sh "php artisan key:generate"
+
+            sh "npm install"
+            sh "npm run prod"
         }
 
         stage('test') {
