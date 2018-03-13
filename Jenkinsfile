@@ -27,6 +27,6 @@ node('master') {
         sh "echo 'JENKINS FILE ERROR'"
         throw error
     } finally {
-        archiveArtifacts './tests/Browser/screenshots/**'
+        archiveArtifacts 'tests/Browser/screenshots/**'
     }
 }
