@@ -14,7 +14,8 @@ node('master') {
         }
 
         stage('test') {
-            sh "chromedriver &"
+            // sh "chromedriver &"
+            sh "./vendor/laravel/dusk/bin/chromedriver-linux &"
             sh "php artisan serve &"
             sh "./vendor/bin/phpunit tests"
         }
