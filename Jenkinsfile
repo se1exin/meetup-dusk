@@ -14,7 +14,7 @@ node('master') {
         }
 
         stage('test') {
-            sh "chromedriver --url-base=/wd/hub &"
+            sh "chromedriver &"
             sh "php artisan serve &"
             sh "./vendor/bin/phpunit tests"
         }
