@@ -14,7 +14,7 @@ node('master') {
         }
 
         stage('test') {
-            sh "chromedriver &"
+            sh "DISPLAY=:0 chromedriver &"
             sh "php artisan serve &"
             sh "./vendor/bin/phpunit tests"
         }
